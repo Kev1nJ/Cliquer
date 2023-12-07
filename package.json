@@ -1,28 +1,24 @@
 {
-  "name": "cliquer",
+  "name": "tech-matchup-app",
   "version": "1.0.0",
-  "description": "location hobby meetup application",
-  "main": "server.js",
+  "description": "",
+  "main": "server/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server/server.js --ignore client",
+    "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm run dev\"",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "seed": "cd server && npm run seed",
+    "build": "cd client && npm run build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Kev1nJ/Cliquer.git"
-  },
-  "keywords": [
-    "Cliq"
-  ],
-  "author": "Kevin Jerome",
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Kev1nJ/Cliquer/issues"
+  "devDependencies": {
+    "concurrently": "^5.3.0"
   },
-  "homepage": "https://github.com/Kev1nJ/Cliquer#readme",
   "dependencies": {
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "mongoose": "^8.0.1"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.20.1",
+    "react-scripts": "^5.0.1"
   }
 }
