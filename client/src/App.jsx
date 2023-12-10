@@ -1,14 +1,22 @@
-import './App.css';
-import { Outlet } from 'react-router-dom';
-
-// Uncomment import statement below after building queries and mutations
-// import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Header from './components/UI/Header';
+import Footer from './components/UI/Footer';
+import Navigation from './components/UI/Navigation';
+import Home from './pages/Home';
+import YourRecipes from './pages/YourRecipes';
 
 function App() {
   return (
-    <div className="flex-column justify-center align-center min-100-vh bg-primary">
-      <Outlet />
-    </div>
+    <Router>
+      <Header />
+      <Navigation />
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/your-recipes" component={YourRecipes} />
+      </Switch>
+      <Footer />
+    </Router>
   );
 }
 

@@ -2,9 +2,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const path = require('path'); 
 const app = express();
+const envPath = path.resolve(__dirname, '../.env');
 
-require('dotenv').config();
+
+require('dotenv').config({ path: envPath });
+
 
 // Connect to the MongoDB database
 mongoose.connect(process.env.MONGODB_URI, {
@@ -23,11 +27,11 @@ app.use(express.json()); // Parse JSON bodies
 app.use(cors());
 
 // API routes
-const authRoutes = require('./routes/auth');
-const recipeRoutes = require('./routes/recipe');
+// const authRoutes = require('./routes/auth');
+// const recipeRoutes = require('./routes/recipe');
 
-app.use('/auth', authRoutes);
-app.use('/recipe', recipeRoutes);
+// app.use('/auth', authRoutes);
+// app.use('/recipe', recipeRoutes);
 
 // Root route handler
 app.get('/', (req, res) => {
