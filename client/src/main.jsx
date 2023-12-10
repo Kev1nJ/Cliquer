@@ -2,10 +2,9 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import App from './App.jsx';
-import Home from './pages/Home';
-import Matchup from './pages/Matchup';
-import Vote from './pages/Vote';
-import NotFound from './pages/NotFound';
+import Home from './components/Home';
+import Recipes from './components/Recipes';
+
 
 const router = createBrowserRouter([
   {
@@ -14,15 +13,12 @@ const router = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       {
-        index: true,
+        path: 'home',
         element: <Home />
       }, {
-        path: '/matchup',
-        element: <Matchup />
-      }, {
-        path: '/matchup/:id',
-        element: <Vote />
-      },
+        path: 'recipes',
+        element: <Recipes />
+      }, 
     ],
   },
 ]);
