@@ -1,2 +1,2 @@
 # Cliquer
-Group hobby finder
+App to be renamed, Recipe finder/share
