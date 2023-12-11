@@ -7,4 +7,7 @@ const authMiddleware = require('../middleware/auth');
 // POST /recipe/save
 router.post('/save', authMiddleware, recipeController.saveRecipe);
 
+// DELETE /recipe/delete/:recipeId
+router.delete('/delete/:recipeId', authMiddleware, recipeController.deleteRecipe);
+
 module.exports = router;

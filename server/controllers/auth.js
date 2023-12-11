@@ -3,8 +3,12 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-// Login user
-exports.login = async (req, res) => {
+
+let register = async (req, res) => {
+  res.json({message:"test"})
+}
+
+let login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -28,4 +32,10 @@ exports.login = async (req, res) => {
     console.error('Error logging in:', error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
-};
+}
+
+// Login user
+module.exports = {
+  login,
+  register
+}

@@ -5,30 +5,38 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path'); 
 const app = express();
-const db = require('./models/db')
+//const db = require('./models/db')
 const authRoutes = require('./routes/auth');
 const recipeRoutes = require('./routes/recipe');
-const protectedRoutes = require('./routes/protected');
-const envPath = path.resolve(__dirname, '../.env');
-require('dotenv').config({ path: envPath });
-
+const db = require("./config/connection")
+// const protectedRoutes = require('./routes/protected');
+//const envPath = path.resolve(__dirname, '../.env');
 
 
 app.use(bodyParser.json());
 app.use(cors());
 
-const Recipe = db.Recipe;
-const User = db.User;
 
+app.use((req, res, next) => {
+  console.log(`Received ${req.method} request to ${req.url}`);
+  next();
+});
+
+
+// const Recipe = db.Recipe;
+// const User = db.User;
 
 
 app.use('/auth', authRoutes);
 app.use('/recipe', recipeRoutes);
-app.use('/protected', protectedRoutes);
+// app.use('/protected', protectedRoutes);
+
+app.use(express.static(path.join(__dirname, "../client/dist")))
 
 // Root route handler
 app.get('/', (req, res) => {
-  res.send('Recipe Searching App!');
+  //res.send('Recipe Searching App!');
+  res.sendFile(path.join(__dirname, "../client/index.html"))
 });
 
 // Error handling middleware
