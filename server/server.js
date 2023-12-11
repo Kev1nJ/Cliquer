@@ -1,37 +1,30 @@
-// app.js
+// server.js
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path'); 
 const app = express();
+const db = require('./models/db')
+const authRoutes = require('./routes/auth');
+const recipeRoutes = require('./routes/recipe');
+const protectedRoutes = require('./routes/protected');
 const envPath = path.resolve(__dirname, '../.env');
-
-
 require('dotenv').config({ path: envPath });
 
 
-// Connect to the MongoDB database
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-  .then(() => console.log('Connected to MongoDB'))
-  .catch((err) => console.error('MongoDB connection error:', err));
 
-app.use((req, res, next) => {
-  console.log(`Received ${req.method} request to ${req.url}`);
-  next();
-});
-
-app.use(express.json()); // Parse JSON bodies
+app.use(bodyParser.json());
 app.use(cors());
 
-// API routes
-// const authRoutes = require('./routes/auth');
-// const recipeRoutes = require('./routes/recipe');
+const Recipe = db.Recipe;
+const User = db.User;
 
-// app.use('/auth', authRoutes);
-// app.use('/recipe', recipeRoutes);
+
+
+app.use('/auth', authRoutes);
+app.use('/recipe', recipeRoutes);
+app.use('/protected', protectedRoutes);
 
 // Root route handler
 app.get('/', (req, res) => {
