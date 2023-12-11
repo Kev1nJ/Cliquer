@@ -1,7 +1,7 @@
 // server/db.js
 const mongoose = require('mongoose');
-const Recipe = require('./models/Recipe');
-const User = require('./models/User');
+const Recipe = require('./Recipe');
+const User = require('./User');
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
