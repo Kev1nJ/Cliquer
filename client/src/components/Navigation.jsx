@@ -1,19 +1,19 @@
-// Navigation.js
-import React from 'react';
-import { Link } from 'react-router-dom';
+// // Navigation.js
+// import React from 'react';
+// import { Link } from 'react-router-dom';
 
-const Navigation = () => {
-  return (
-    <nav>
-      {/* Home Button */}
-      <Link to="/">Home</Link>
+// const Navigation = () => {
+//   return (
+//     <nav>
+//       {/* Home Button */}
+//       <Link to="/">Home</Link>
 
-      {/* Your Recipes Button */}
-      <Link to="/your-recipes">Your Recipes</Link>
+//       {/* Your Recipes Button */}
+//       <Link to="/your-recipes">Your Recipes</Link>
 
-    </nav>
+//     </nav>
 
-  );
-};
+//   );
+// };
 
-export default Navigation;
+// export default Navigation;
