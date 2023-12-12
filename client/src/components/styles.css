@@ -1,3 +1,7 @@
+*{
+  font-family: 'Belanosima', sans-serif;
+}
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -6,10 +10,13 @@ body {
 
 header {
   background-color: #0090c1;
+  font-size: 50px;
   color: white;
   text-align: center;
   padding: 1em 0;
+  text-shadow: 2px 4px 4px #000000;
 }
+
 
 nav {
   background-color: #022f40;
@@ -17,6 +24,8 @@ nav {
 }
 
 nav a {
+
+  font-size: 30px;
   float: left;
   display: block;
   color: white;
@@ -33,9 +42,11 @@ nav a:hover {
 /* Sections/Body of Portoflio */
 
 section {
-  padding: 150px;
-  color:white;
-  background-color: #0090c1;
+  font-size: 50px;
+  padding: 500px;
+  color:#0090c1;
+  background-color: white;
+  text-shadow: 2px 4px 4px #000000;
 }
 
 footer {

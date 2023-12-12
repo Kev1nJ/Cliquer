@@ -1,22 +1,22 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Header from './components/Header';
-import Footer from './components/Footer';
+import Header from './components/UI/Header';
+import Footer from './components/UI/Footer';
 import Navigation from './components/Navigation';
-import Home from './components/Home';
-// import YourRecipes from './components/YourRecipes';
+import { useLocation, Outlet } from "react-router-dom";
 
 function App() {
+  const currentPage = useLocation().pathname;
   return (
-    <Router>
-      <Header />
-      <Navigation />
-      <Switch>
-        <Route path="/" exact component={Home} />
-        {/* <Route path="/your-recipes" component={YourRecipes} /> */}
-      </Switch>
-      <Footer />
-    </Router>
+    <>
+      <Header/>
+      <Navigation currentPage={currentPage} />
+      <div className="container">
+        <Outlet />
+      </div>
+      
+      <Footer/>
+   
+    </>
   );
 }
 
