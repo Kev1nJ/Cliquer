@@ -1,35 +1,23 @@
 [
   {
-    "name": "JavaScript"
+    "name": "Recipe 1",
+    "details": "Description of Recipe 1"
   },
   {
-    "name": "HTML"
+    "name": "Recipe 2",
+    "details": "Description of Recipe 2"
   },
   {
-    "name": "CSS"
+    "name": "Recipe 3",
+    "details": "Description of Recipe 3"
   },
   {
-    "name": "Node.js"
+    "name": "Recipe 4",
+    "details": "Description of Recipe 4"
   },
   {
-    "name": "Express.js"
-  },
-  {
-    "name": "MySQL"
-  },
-  {
-    "name": "MongoDB"
-  },
-  {
-    "name": "React"
-  },
-  {
-    "name": "GraphQL"
-  },
-  {
-    "name": "Sequelize"
-  },
-  {
-    "name": "Handlebars.js"
+    "name": "Recipe 5",
+    "details": "Description of Recipe 5"
   }
+  
 ]

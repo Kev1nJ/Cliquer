@@ -1,14 +1,14 @@
-// const db = require('../config/connection');
-// const cleanDB = require('./cleanDB');
-// const { Tech } = require('../models');
+const db = require('../config/connection');
+const cleanDB = require('./cleanDB');
+const { Recipe } = require('../models');
 
-// const techData = require('./techData.json');
+const recipeData = require('./recipeData.json');
 
-// db.once('open', async () => {
-//   await cleanDB('Tech', 'teches');
+db.once('open', async () => {
+  await cleanDB('Recipe', 'recipes');
 
-//   await Tech.insertMany(techData);
+  await Recipe.insertMany(recipeData);
 
-//   console.log('Technologies seeded!');
-//   process.exit(0);
-// });
+  console.log('Recipes seeded!');
+  process.exit(0);
+});

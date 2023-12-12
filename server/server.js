@@ -5,12 +5,10 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path'); 
 const app = express();
-//const db = require('./models/db')
 const authRoutes = require('./routes/auth');
 const recipeRoutes = require('./routes/recipe');
 const db = require("./config/connection")
-// const protectedRoutes = require('./routes/protected');
-//const envPath = path.resolve(__dirname, '../.env');
+
 
 
 app.use(bodyParser.json());
