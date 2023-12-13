@@ -1,11 +1,12 @@
+// YourRecipes.js
 import React from 'react';
 
 const YourRecipes = () => {
   return (
-    <div>
+    <section id="your-recipes">
       <h2>Your Recipes</h2>
-      {/* Add content for user's recipes */}
-    </div>
+      {/* Add content */}
+    </section>
   );
 };
 

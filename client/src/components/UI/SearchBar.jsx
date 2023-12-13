@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 
-const Search = () => {
+const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const apiKey = 'da0e3f6fec6c40439fe09712588d4690';
 
-  const handleSearch = async (query) => {
+  const handleSearch = async () => {
     try {
-      const response = await fetch(`https://api.spoonacular.com/recipes/search?apiKey=${apiKey}&number=15&query=${query}`);
+      const response = await fetch(`/api/search?query=${searchTerm}`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -21,7 +20,7 @@ const Search = () => {
   };
 
   const handleButtonClick = () => {
-    handleSearch(searchTerm);
+    handleSearch();
   };
 
   return (
@@ -37,4 +36,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default SearchBar;

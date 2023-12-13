@@ -1,61 +1,80 @@
-// controllers/auth.js
-const User = require('../models/User');
+// controllers/authController.js
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { validationResult } = require('express-validator');
+const User = require('../models/User');
 
 
-let register = async (req, res) => {
-  try {
-    const { email, password } = req.body;
+const authController = {
+  async register(req, res, next) {
+    try {
+      // Validate 
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+      }
 
-    // Check if the user already exists
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      return res.status(400).json({ message: 'User already exists' });
+      // Extract email and password 
+      const { email, password } = req.body;
+
+      // Check if the user already exists
+      const existingUser = await User.findOne({ email });
+      if (existingUser) {
+        return res.status(400).json({ message: 'User already exists' });
+      }
+
+      // Hash the password
+      const hashedPassword = await bcrypt.hash(password, 10);
+
+      // Create a new user
+      const newUser = new User({ email, password: hashedPassword });
+      await newUser.save();
+
+      res.status(201).json({ message: 'User registered successfully' });
+    } catch (error) {
+      console.error('Error registering user:', error.message);
+      next(error);
     }
+  },
 
-    // Hash the password
-    const hashedPassword = await bcrypt.hash(password, 10);
+  async logout(req, res) {
+    // Logout logic
+    res.json({ message: 'Logout successful' });
+  },
 
-    // Create a new user
-    const newUser = new User({ email, password: hashedPassword });
-    await newUser.save();
+  async login(req, res, next) {
+    try {
+      // Validate request body
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+      }
 
-    res.status(201).json({ message: 'User registered successfully' });
-  } catch (error) {
-    console.error('Error registering user:', error);
-    res.status(500).json({ message: 'Internal Server Error' });
-  }
+      // Extract email and password from request body
+      const { email, password } = req.body;
+
+      // Check if the user exists in the database
+      const user = await User.findOne({ email });
+      if (!user) {
+        return res.status(401).json({ error: 'Invalid credentials' });
+      }
+
+      // Compare the provided password with the hashed password in the database
+      const passwordMatch = await bcrypt.compare(password, user.password);
+      if (!passwordMatch) {
+        return res.status(401).json({ error: 'Invalid credentials' });
+      }
+
+      // If the credentials are valid, generate a JWT token with 1-hour expiration
+      const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '6h' });
+
+      // Send the token in the response
+      res.json({ token });
+    } catch (error) {
+      console.error('Error in login route:', error.message);
+      next(error);
+    }
+  },
 };
 
-let login = async (req, res) => {
-  try {
-    const { email, password } = req.body;
-
-    // Check if the user exists
-    const user = await User.findOne({ email });
-    if (!user) {
-      return res.status(401).json({ message: 'Invalid credentials' });
-    }
-
-    // Compare passwords
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-    if (!isPasswordValid) {
-      return res.status(401).json({ message: 'Invalid credentials' });
-    }
-
-    // Generate JWT
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-
-    res.status(200).json({ token });
-  } catch (error) {
-    console.error('Error logging in:', error);
-    res.status(500).json({ message: 'Internal Server Error' });
-  }
-}
-
-// Login user
-module.exports = {
-  login,
-  register
-}
+module.exports = authController;

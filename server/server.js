@@ -3,12 +3,16 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const path = require('path'); 
+const path = require('path');
 const app = express();
 const authRoutes = require('./routes/auth');
 const recipeRoutes = require('./routes/recipe');
-const db = require("./config/connection")
+const db = require("./config/connection");
+const externalApiRoutes = require('./routes/externalApi');
 
+
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
 
 app.use(bodyParser.json());
@@ -21,19 +25,18 @@ app.use((req, res, next) => {
 });
 
 
-// const Recipe = db.Recipe;
-// const User = db.User;
+
 
 
 app.use('/auth', authRoutes);
 app.use('/recipe', recipeRoutes);
-// app.use('/protected', protectedRoutes);
+app.use('/api', externalApiRoutes);
+
 
 app.use(express.static(path.join(__dirname, "../client/dist")))
 
 // Root route handler
 app.get('/', (req, res) => {
-  //res.send('Recipe Searching App!');
   res.sendFile(path.join(__dirname, "../client/index.html"))
 });
 
@@ -47,7 +50,8 @@ app.use((err, req, res, next) => {
   });
 });
 
-const port = process.env.PORT || 3006;
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+const PORT = process.env.PORT || 3006;
+
+db.once('open', () => {
+  app.listen(PORT, () => console.log(`Server is listening port ${PORT}`))
+})
