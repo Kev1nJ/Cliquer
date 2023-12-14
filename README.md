@@ -51,7 +51,7 @@ Cooking enthusiasts often struggle to find recipes that match their cravings or 
 To start the application, run the following commands:
 
 # In the root folder
-npm run dev
+npm start
 
 Visit http://localhost:3006 to access DishWatcher.
 
