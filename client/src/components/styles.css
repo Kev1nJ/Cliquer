@@ -39,6 +39,11 @@ nav a:hover {
   color: black;
 }
 
+#gif{
+  max-width: 100px; /* Adjust the size as needed */
+  margin-right: 10px; /* Adjust the margin between the logo and GIF */
+}
+
 /* Sections/Body of App */
 
 section {
