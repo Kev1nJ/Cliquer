@@ -4,7 +4,7 @@ const Recipe = require('../models/Recipe');
 // Save a recipe to user's profile
 exports.saveRecipe = async (req, res) => {
   try {
-    const userId = req.userId; // Assuming you have middleware to extract user ID from JWT
+    const userId = req.userId; 
     const { recipeId, recipeTitle, recipeDetails } = req.body;
 
     // Find the user by ID

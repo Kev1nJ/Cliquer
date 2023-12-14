@@ -38,7 +38,7 @@ const authController = {
   },
 
   async logout(req, res) {
-    // Logout logic
+    // Logout logic NEEDED
     res.json({ message: 'Logout successful' });
   },
 
@@ -50,7 +50,7 @@ const authController = {
         return res.status(400).json({ errors: errors.array() });
       }
 
-      // Extract email and password from request body
+      // Extract email and password 
       const { email, password } = req.body;
 
       // Check if the user exists in the database
