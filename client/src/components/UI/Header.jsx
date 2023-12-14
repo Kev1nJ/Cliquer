@@ -4,7 +4,11 @@ import SearchBar from './SearchBar';
 const Header = () => {
   return (
     <header>
-      <h1>Your Recipe App</h1>
+      <h1>
+  D<span id="spanI">i</span>sh
+  W<span id="spanA">a</span>tcher
+</h1>
+
       <SearchBar />
     </header>
   );

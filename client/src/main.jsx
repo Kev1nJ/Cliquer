@@ -3,13 +3,14 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App.jsx';
 import Home from './components/pages/Home.jsx';
 import Recipes from './components/pages/Recipes.jsx';
+import Register from './components/pages/Register.jsx';
+
 
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-    errorElement: <NotFound />,
     children: [
       {
          path: 'home',

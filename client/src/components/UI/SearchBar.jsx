@@ -25,13 +25,13 @@ const SearchBar = () => {
 
   return (
     <div>
-      <input
+      <input id="searchBar"
         type="text"
         placeholder="Search..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <button onClick={handleButtonClick}>Search</button>
+      <button id="searchButton" onClick={handleButtonClick}>Search</button>
     </div>
   );
 };
