@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "App to be renamed, Recipe finder/share",
   "main": "index.js",
+  "engines": {
+    "node": "v20.5.1",
+    "npm": "9.8.0"
+  },
   "scripts": {
     "start": "node server/server.js --ignore client",
     "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm run dev\"",

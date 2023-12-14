@@ -75,6 +75,43 @@ footer {
 }
 
 
+/* HOME COMPONENT */
+
+
+#home{
+  text-align: center;
+  justify-content: center;
+  margin-top: 5px;
+  padding-top: 5px;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#stockImage {
+  width: auto;
+  height: 400px;
+  max-width: 100%; 
+  margin: 0 10px; 
+}
+ 
+#homeDiv{
+  white-space: nowrap;
+ 
+}
+
+#homeDiv h2{
+  text-align: center;
+  justify-content: center;
+}
+
+
+
+
+
 
 /* Media queries for responsiveness */
 @media only screen and (max-width: 768px) {
@@ -108,7 +145,7 @@ footer {
     padding: 200px;
   }
 }
- 
+
 @media only screen and (max-width: 480px) {
   
 }
