@@ -29,6 +29,7 @@ const SearchBar = () => {
         type="text"
         placeholder="Search..."
         value={searchTerm}
+        //event handler in Reactused to capture changes 
         onChange={(e) => setSearchTerm(e.target.value)}
       />
       <button id="searchButton" onClick={handleButtonClick}>Search</button>
